@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=1 python test_obs.py --dump_dir logs/dump_full_model_obs  --checkpoint_path logs/log_full_model/checkpoint.tar --seg_checkpoint_path logs/log_insseg/checkpoint.tar --collision_thresh 0 --camera realsense --dataset_root /data/mahaoxiang/graspnet
