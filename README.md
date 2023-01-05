@@ -79,7 +79,7 @@ sh command_train.sh
 ```
 
 ### Test
- - We offer our checkpoints for inference and evaluation, you can download from [Google Drive]()
+ - We offer our checkpoints for inference and evaluation, you can download from [Google Drive](https://drive.google.com/drive/folders/1Y2o0uAbhS6-yZhPkKMAAnL0tCpbiJfk0?usp=share_link)
 ```bash
 sh command_test.sh
 ```
