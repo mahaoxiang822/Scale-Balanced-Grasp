@@ -18,17 +18,17 @@ from loss_utils import GRASP_MAX_WIDTH, GRASP_MAX_TOLERANCE, THRESH_GOOD, THRESH
     batch_viewpoint_params_to_matrix, huber_loss, FocalLoss_Ori , BinaryFocalLoss
 
 
-# width distribution prior
-width_distribution_prior = np.load("statistic/best_width_distribution_robust_32.npy", allow_pickle=True).item()
-width_distribution_prior_num = width_distribution_prior['num']
-intervals = width_distribution_prior['interval']
-width_distribution_prior_ = torch.zeros(32)
+# scale distribution prior
+scale_distribution_prior = np.load("statistic/scale_distribution.npy", allow_pickle=True).item()
+scale_distribution_prior_num = scale_distribution_prior['num']
+intervals = scale_distribution_prior['interval']
+scale_distribution_prior_ = torch.zeros(32)
 for i in range(32):
-    width_distribution_prior_[i] = width_distribution_prior_num[i]
-width_max_prob = torch.max(width_distribution_prior_)
-width_distribution_prior_ = - (width_distribution_prior_ / width_max_prob).log() + 1
-width_distribution_prior = width_distribution_prior_.cuda()
-print(width_distribution_prior)
+    scale_distribution_prior_[i] = scale_distribution_prior_num[i]
+scale_max_prob = torch.max(scale_distribution_prior_)
+scale_distribution_prior_ = - (scale_distribution_prior_ / scale_max_prob).log() + 1
+scale_distribution_prior = scale_distribution_prior_.cuda()
+
 
 def generate_reweight_mask(end_points):
     # load distribution prior
@@ -42,7 +42,7 @@ def generate_reweight_mask(end_points):
     id_mask = torch.zeros(size=target_widths.size()).long()
     for idx in range(len(intervals) - 1):
         id_mask[(intervals[idx] < target_widths) * (intervals[idx + 1] > target_widths)] = idx
-    weight_mask = width_distribution_prior[id_mask]
+    weight_mask = scale_distribution_prior[id_mask]
     return weight_mask
 
 
