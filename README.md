@@ -105,7 +105,7 @@ python evaluate.py
 ### Citation
 If any part of our paper and repository is helpful to your work, please generously cite with:
 ```
-@InProceedings{Ma_2021_BMVC,
+@InProceedings{Ma_2022_CoRL,
     author    = {Haoxiang, Ma and Huang, Di},
     title     = {Towards Scale Balanced 6-DoF Grasp Detection in Cluttered Scenes},
     booktitle = {Conference on Robot Learning (CoRL)},
